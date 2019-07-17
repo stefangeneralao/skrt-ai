@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="p5.min.js"></script>
+    <script src="tf.min.js"></script>
+    <link rel="shortcut icon" type="image/png" href="./favicon.ico"/>
+    <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Expanded|Roboto&display=swap" rel="stylesheet">
+    <style>
+      body {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        margin-top: 10px;
+        font-family: 'Roboto', sans-serif;
+      }
+      html {
+        height: 100vh;
+        width: 100vw;
+        background-color: #111;
+      }
+      #stats {
+        color: white;
+        position: absolute;
+        top: 215px;
+        left: 410px;
+      }
+      #load-elite-button {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+        width: 100px;
+        top: -25px;
+        background-color: #111;
+        color: white;
+      }
+    </style>
+    <title>skrt-ai</title>
+  </head>
+  <body>
+    <script src="sketch.js"></script>
+    <script src="vehicle.js"></script>
+    <script src="ray.js"></script>
+    <script src="boundary.js"></script>
+    <script src="neuralNetwork.js"></script>
+    <div id="stats">
+      <h2>
+        Score:
+        <span id="previous-score-value"></span>
+        <span id="score-increased-arrow"></span>
+        <span id="current-score-value">0</span>
+      </h2>
+      <h2>
+        Generation:
+        <span id="generation-count">0</span>
+      </h2>
+    </div>
+    <button id="load-elite-button" onclick="loadElite()">Load Elite</button>
+  </body>
+</html>
