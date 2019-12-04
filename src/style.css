@@ -10,14 +10,14 @@ body {
 html {
   height: 100vh;
   width: 100vw;
-  background-color: #111;
+  background-color: #fff;
 }
 
 #stats {
-  color: white;
+  color: #444;
   position: absolute;
-  top: 215px;
-  left: 410px;
+  top: 180px;
+  left: 380px;
 }
 
 #load-elite-button {
@@ -28,9 +28,4 @@ html {
   top: -25px;
   background-color: #111;
   color: white;
-}
-
-h1 {
-  color: white;
-  textAlign: center;
 }

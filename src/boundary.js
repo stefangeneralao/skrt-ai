@@ -9,7 +9,7 @@ class Boundary {
   }
 
   show() {
-    stroke(255);
+    stroke('#DDD');
     line(this.a.x, this.a.y, this.b.x, this.b.y);
   }
 
@@ -17,7 +17,7 @@ class Boundary {
     return p5.Vector.dist(this.a, this.b);
   }
 
-  isIntersecting(pos, margin = 6) {
+  isIntersecting(pos, margin = 5) {
     function pldistance(p1, p2, x, y) {
       const num = abs((p2.y - p1.y) * x - (p2.x - p1.x) * y + p2.x * p1.y - p2.y * p1.x);
       const den = p5.Vector.dist(p1, p2);

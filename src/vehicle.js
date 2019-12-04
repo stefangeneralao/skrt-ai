@@ -3,7 +3,7 @@ class Vehicle {
   static maxRotation = 0.05;
   static maxBrake = 0.05;
   static friction = 0.015;
-  static range = 400;
+  static range = 300;
   static fov = 180;
   static numSensors = 7;
   static mutationRate = 0.512;
@@ -11,8 +11,8 @@ class Vehicle {
   constructor(neuralNetwork) {
     this.setInitialPosition();
     this.setInitialRays();
-    this.rayColor = color(127);
-    this.bodyColor = color(255, 200);
+    this.rayColor = color(200);
+    this.bodyColor = color(0, 200);
     const numInputs = this.rays.length + 2;
     if (neuralNetwork) {
       this.neuralNetwork = neuralNetwork;
@@ -216,7 +216,7 @@ class Vehicle {
         push();
         strokeWeight(2);
         const c = this.rayColor;
-        c.setAlpha(map(dist, 0, Vehicle.range, 255, 0));
+        c.setAlpha(map(dist, 0, Vehicle.range, 100, 0));
         stroke(c);
         noFill();
         push();
@@ -249,9 +249,9 @@ class Vehicle {
 
   setRandomRayColor() {
     this.rayColor = color(
-      randomGaussian(Math.min(Math.max(parseInt(this.rayColor.levels[0]), 80), 255), 15),
-      randomGaussian(Math.min(Math.max(parseInt(this.rayColor.levels[1]), 80), 255), 15),
-      randomGaussian(Math.min(Math.max(parseInt(this.rayColor.levels[2]), 80), 255), 15),
+      randomGaussian(Math.min(Math.max(parseInt(this.rayColor.levels[0]), 0), 220), 15),
+      randomGaussian(Math.min(Math.max(parseInt(this.rayColor.levels[1]), 0), 220), 15),
+      randomGaussian(Math.min(Math.max(parseInt(this.rayColor.levels[2]), 0), 220), 15),
     );
   }
 }

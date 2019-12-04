@@ -4,7 +4,7 @@ const foods = [];
 const populationSize = 50;
 const numElites = 3;
 const selectionSplit = 0.5;
-let lifeTime = 750;
+let lifeTime = 16;
 let frameCount = 0;
 let generationCount = 0;
 
@@ -100,7 +100,7 @@ function setWalls(config = {}) {
 }
 
 function setEnvironment() {
-  background('#111');
+  background('#fff');
 }
 
 function showWalls() {
@@ -164,13 +164,23 @@ function printEliteFitness() {
 }
 
 function decreaseVehicleMutationRate() {
-  if (Vehicle.mutationRate > 0.001) {
-    Vehicle.mutationRate *= 0.5;
+  if (generationCount % 5 != 0) {
+    return;
   }
+
+  if (Vehicle.mutationRate > 0.001) {
+    Vehicle.mutationRate /= 2;
+    return;
+  }
+
+  Vehicle.mutationRate = 0.001;
 }
 
 function increaseGenerationCount() {
   generationCount++;
+}
+
+function displayGenerationCount() {
   document.getElementById('generation-count').innerText = generationCount;
 }
 
@@ -201,10 +211,9 @@ function setNewGeneration() {
     vehicles[i].dispose();
     vehicles[i] = newVehicles[i];
   }
-  
-  decreaseVehicleMutationRate();
-  increaseGenerationCount();
 
+  increaseGenerationCount();
+  displayGenerationCount();
   frameCount = 0;
 }
 
@@ -239,22 +248,39 @@ async function loadElite() {
   vehicles[0] = elite;
 }
 
+function increaseLifeTime() {
+  if (lifeTime < 800) {
+    lifeTime += 16;
+  } else {
+    lifeTime = 800;
+  }
+}
+
+function displayVehicleMutationRate() {
+  document.getElementById('mutation-rate').innerText = Vehicle.mutationRate;
+}
+
+function displayLifeTime() {
+  document.getElementById('life-time').innerText = lifeTime;
+}
+
 function setup() {
   createCanvas(960, 540);
   setEnvironment();
 
   setWalls({ type: 'cornered-square' });
   setVehicles();
+  displayVehicleMutationRate();
+  displayLifeTime();
 }
 
 function draw() {
-  
-  if (++frameCount > lifeTime) {
+  if (++frameCount > lifeTime || !isAnyVehicleAlive()) {
     setNewGeneration();
-  }
-
-  if (!isAnyVehicleAlive()) {
-    setNewGeneration();
+    increaseLifeTime();
+    decreaseVehicleMutationRate();
+    displayVehicleMutationRate();
+    displayLifeTime();
   }
   
   setEnvironment();
