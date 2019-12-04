@@ -1,0 +1,36 @@
+body {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 10px;
+  font-family: 'Roboto', sans-serif;
+}
+
+html {
+  height: 100vh;
+  width: 100vw;
+  background-color: #111;
+}
+
+#stats {
+  color: white;
+  position: absolute;
+  top: 215px;
+  left: 410px;
+}
+
+#load-elite-button {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  width: 100px;
+  top: -25px;
+  background-color: #111;
+  color: white;
+}
+
+h1 {
+  color: white;
+  textAlign: center;
+}

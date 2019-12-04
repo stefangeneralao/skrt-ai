@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="skrt-ai/p5.min.js"></script>
+    <script src="skrt-ai/tf.min.js"></script>
+    <link rel="shortcut icon" type="image/png" href="skrt-ai/favicon.ico"/>
+    <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Expanded|Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="skrt-ai/style.css">
+    <title>skrt-ai</title>
+  </head>
+  <body>
+    <script src="skrt-ai/sketch.js"></script>
+    <script src="skrt-ai/vehicle.js"></script>
+    <script src="skrt-ai/ray.js"></script>
+    <script src="skrt-ai/boundary.js"></script>
+    <script src="skrt-ai/neuralNetwork.js"></script>
+    <div id="stats">
+      <h2>
+        Score:
+        <span id="previous-score-value"></span>
+        <span id="score-increased-arrow"></span>
+        <span id="current-score-value">0</span>
+      </h2>
+      <h2>
+        Generation:
+        <span id="generation-count">0</span>
+      </h2>
+    </div>
+    <!-- <button id="load-elite-button" onclick="loadElite()">Load Elite</button> -->
+  </body>
+</html>

@@ -1,8 +1,11 @@
 {
-  "name": "skrt-ai-client",
+  "name": "skrt-ai",
   "version": "1.0.0",
+  "main": "index.js",
+  "repository": "http://github.com/stefangeneralao/skrt-ai",
+  "author": "stefangeneralao <stefangeneralao@gmail.com>",
   "license": "MIT",
-  "scripts": {
-    "deploy": "now --target production"
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
