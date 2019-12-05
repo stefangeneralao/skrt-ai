@@ -7,6 +7,7 @@ class Vehicle {
   static fov = 180;
   static numSensors = 7;
   static mutationRate = 0.512;
+  static deathPenalty = 0.5; // Range 0-1 where 0 is no penalty.
 
   constructor(neuralNetwork) {
     this.setInitialPosition();
@@ -44,6 +45,9 @@ class Vehicle {
   }
 
   getFitness() {
+    if (this.dead) {
+      return this.totalDistanceTraveled * (1 - Vehicle.deathPenalty);
+    }
     return this.totalDistanceTraveled;
   }
 
