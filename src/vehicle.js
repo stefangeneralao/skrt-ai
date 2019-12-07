@@ -1,13 +1,13 @@
 class Vehicle {
-  static maxForce = 0.25;
+  static maxForce = 0.15;
   static maxRotation = 0.05;
   static maxBrake = 0.05;
-  static friction = 0.015;
+  static friction = 0.010;
   static range = 300;
-  static fov = 180;
+  static fov = 300;
   static numSensors = 7;
   static mutationRate = 0.512;
-  static deathPenalty = 0.5; // Range 0-1 where 0 is no penalty.
+  static deathPenalty = 0.4; // Range 0-1 where 0 is no penalty and 1 is elimination.
 
   constructor(neuralNetwork) {
     this.setInitialPosition();
