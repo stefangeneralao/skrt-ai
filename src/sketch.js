@@ -4,9 +4,12 @@ const foods = [];
 const populationSize = 50;
 const numElites = 3;
 const selectionSplit = 0.5;
+const targetMutationRate = 0.001;
+const targetLifeTime = 800;
 let lifeTime = 16;
 let frameCount = 0;
 let generationCount = 0;
+let isPaused = false;
 
 tf.setBackend('cpu');
 
@@ -168,12 +171,12 @@ function decreaseVehicleMutationRate() {
     return;
   }
 
-  if (Vehicle.mutationRate > 0.001) {
+  if (Vehicle.mutationRate > targetMutationRate) {
     Vehicle.mutationRate /= 2;
     return;
   }
 
-  Vehicle.mutationRate = 0.001;
+  Vehicle.mutationRate = targetMutationRate;
 }
 
 function increaseGenerationCount() {
@@ -188,16 +191,15 @@ function setNewGeneration() {
   sortVehicles();
   setScore();
   printEliteFitness();
-  
-  const newVehicles = [];
 
+  const newVehicles = [];
   const elites = vehicles.slice(0, numElites);
   elites.forEach(elite => {
     const clone = elite.clone()
     clone.setEliteColor();
     newVehicles.push(clone);
   });
-  
+
   for (let i = 0; newVehicles.length < populationSize; i++) {
     const index = i % (parseInt(populationSize * abs(selectionSplit)) || 1);
     const parent = vehicles[index];
@@ -249,10 +251,10 @@ async function loadElite() {
 }
 
 function increaseLifeTime() {
-  if (lifeTime < 800) {
+  if (lifeTime < targetLifeTime) {
     lifeTime += 16;
   } else {
-    lifeTime = 800;
+    lifeTime = targetLifeTime;
   }
 }
 
@@ -262,6 +264,21 @@ function displayVehicleMutationRate() {
 
 function displayLifeTime() {
   document.getElementById('life-time').innerText = lifeTime;
+}
+
+function togglePause() {
+  if (isPaused) {
+    loop();
+  } else {
+    noLoop();
+  }
+  isPaused = !isPaused;
+}
+
+function keyPressed() {
+  if (keyCode == 32) {
+    togglePause();
+  }
 }
 
 function setup() {
