@@ -1,12 +1,12 @@
 const vehicles = [];
 const walls = [];
 const foods = [];
-const populationSize = 50;
-const numElites = 3;
+const populationSize = 1;
+const numElites = 0;
 const selectionSplit = 0.5;
 const targetMutationRate = 0.001;
 const targetLifeTime = 800;
-let lifeTime = 16;
+let lifeTime = 800;
 let frameCount = 0;
 let generationCount = 0;
 let isPaused = false;
@@ -309,8 +309,8 @@ function draw() {
     vehicle.show();
   }
   for(let vehicle of vehicles) {
-    // vehicle.updateManually(getKeysIsDown());
-    vehicle.updateAI();
+    vehicle.updateManually(getKeysIsDown());
+    // vehicle.updateAI();
     if (vehicle.isWallHit(walls)) {
       if (!vehicle.dead) {
         vehicle.kill();

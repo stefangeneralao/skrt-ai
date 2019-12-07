@@ -25,7 +25,7 @@ class NeuralNetwork {
   }
 
   dispose() {
-    this.model.dispose();
+    // this.model.dispose();
   }
 
   predict(inputs) {
