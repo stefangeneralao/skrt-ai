@@ -38,10 +38,15 @@ class Vehicle {
 
   setInitialRays() {
     this.rays = [];
-    for (let a = -Vehicle.fov / 2; a < Vehicle.fov / 2; a += Vehicle.fov / (Vehicle.numSensors - 1)) {
-      this.rays.push(new Ray(this.pos, radians(a - 90)));
+    const offset = 0;
+    const firstRayAngle = -Vehicle.fov / 2 + offset;
+    const lastRayAngle = Vehicle.fov / 2 + offset;
+    const angleIncrementation = Vehicle.fov / (Vehicle.numSensors - 1);
+    for (let a = firstRayAngle; a <= lastRayAngle; a += angleIncrementation) {
+      const ray = new Ray(this.pos, radians(a - 90));
+      this.rays.push(ray);
+      ray.rotate(this.heading);
     }
-    this.rays.push(new Ray(this.pos, radians(Vehicle.fov / 2 - 90)));
   }
 
   getFitness() {

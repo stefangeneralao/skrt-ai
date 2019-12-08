@@ -133,8 +133,8 @@ function showFood() {
 function setScore() {
   const currentScore = vehicles[0].getFitness().toFixed(1);
   const previousScore = parseFloat(document.getElementById('current-score-value').innerText);
-  document.getElementById('current-score-value').innerText = currentScore;
   if (currentScore > previousScore) {
+    document.getElementById('current-score-value').innerText = currentScore;
     document.getElementById('previous-score-value').innerText = previousScore;
     document.getElementById('score-increased-arrow').innerText = '->';
   } else {
