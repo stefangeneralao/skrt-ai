@@ -45,8 +45,8 @@ class Vehicle {
     for (let a = firstRayAngle; a <= lastRayAngle; a += angleIncrementation) {
       const ray = new Ray(this.pos, radians(a - 90));
       this.rays.push(ray);
+      ray.rotate(this.heading);
     }
-    this.rays.push(new Ray(this.pos, radians(Vehicle.fov / 2 - 90)));
   }
 
   getFitness() {
