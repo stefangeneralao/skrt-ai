@@ -268,10 +268,6 @@ function displayVehicleMutationRate() {
   document.getElementById('mutation-rate').innerText = Vehicle.mutationRate;
 }
 
-function displayLifeTime() {
-  document.getElementById('life-time').innerText = lifeTime;
-}
-
 function togglePause() {
   if (isPaused) {
     loop();
@@ -294,7 +290,6 @@ function setup() {
   setWalls({ type: 'cornered-square' });
   setVehicles();
   displayVehicleMutationRate();
-  displayLifeTime();
 }
 
 function draw() {
@@ -303,7 +298,6 @@ function draw() {
     increaseLifeTime();
     decreaseVehicleMutationRate();
     displayVehicleMutationRate();
-    displayLifeTime();
   }
   
   setEnvironment();
