@@ -6,6 +6,7 @@ const numElites = 3;
 const selectionSplit = 0.5;
 const targetMutationRate = 0.001;
 const targetLifeTime = 800;
+const lifeTimeIncreaseStep = 16;
 let lifeTime = 16;
 let frameCount = 0;
 let generationCount = 0;
@@ -230,11 +231,16 @@ function isAnyVehicleAlive() {
 
 function showProgressBar() {
   push();
+  const maxLifeTimeLineStart = width * lifeTime / targetLifeTime;
+  translate(0, height - 1);
+  stroke(150);
+  line(maxLifeTimeLineStart, 0, width, 0);
+
   stroke(color(230, 50, 50));
   strokeWeight(1);
-  translate(0, height - 1);
   const progress = map(lifeTime - frameCount, 0, lifeTime, 1, 0);
-  line(0, 0, width * progress, 0);
+  const progressLineLength = width * progress * lifeTime / targetLifeTime;
+  line(0, 0, progressLineLength, 0);
   pop();
 }
 
@@ -252,7 +258,7 @@ async function loadElite() {
 
 function increaseLifeTime() {
   if (lifeTime < targetLifeTime) {
-    lifeTime += 16;
+    lifeTime += lifeTimeIncreaseStep;
   } else {
     lifeTime = targetLifeTime;
   }
