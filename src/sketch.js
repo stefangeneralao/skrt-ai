@@ -4,9 +4,10 @@ const foods = [];
 const populationSize = 50;
 const numElites = 3;
 const selectionSplit = 0.5;
-const targetMutationRate = 0.001;
 const targetLifeTime = 800;
 const lifeTimeIncreaseStep = 16;
+let targetMutationRate = Math.pow(2, 0) / 100;
+Vehicle.mutationRate = Math.pow(2, 4) / 100;
 let lifeTime = 16;
 let frameCount = 0;
 let generationCount = 0;
@@ -168,7 +169,7 @@ function printEliteFitness() {
 }
 
 function decreaseVehicleMutationRate() {
-  if (generationCount % 5 != 0) {
+  if (generationCount % 10 != 0) {
     return;
   }
 

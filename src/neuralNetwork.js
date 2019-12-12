@@ -38,26 +38,20 @@ class NeuralNetwork {
   }
 
   mutate(mutationRate) {
-    let hasMutated = false;
     tf.tidy(() => {
       const weights = this.model.getWeights();
       const mutatedWeights = [];
-      do {
-        for (let i = 0; i < weights.length; i++) {
-          let tensor = weights[i];
-          let shape = weights[i].shape;
-          let values = tensor.dataSync().slice();
-          for (let j = 0; j < values.length; j++) {
-            if (random(1) < mutationRate) {
-              let w = values[j];
-              values[j] = randomGaussian(w);
-              hasMutated = true;
-            }
-          }
-          let newTensor = tf.tensor(values, shape);
-          mutatedWeights[i] = newTensor;
+      for (let i = 0; i < weights.length; i++) {
+        let tensor = weights[i];
+        let shape = weights[i].shape;
+        let values = tensor.dataSync().slice();
+        for (let j = 0; j < values.length; j++) {
+          let w = values[j];
+          values[j] = randomGaussian(w, mutationRate);
         }
-      } while(!hasMutated);
+        let newTensor = tf.tensor(values, shape);
+        mutatedWeights[i] = newTensor;
+      }
       this.model.setWeights(mutatedWeights);
     });
   }
