@@ -20,12 +20,38 @@ html {
   left: 380px;
 }
 
+button, input[type="submit"], input[type="reset"] {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
 #load-elite-button {
   position: absolute;
   left: 50%;
   transform: translate(-50%);
-  width: 100px;
-  top: -25px;
-  background-color: #111;
-  color: white;
+  top: -40px;
+  background-color: white;
+  color: #333;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  padding: 10px;
+  font-size: 0.8rem;
+  width: 125px;
+  border-radius: 3px;
+}
+
+#load-elite-button.loading {
+  cursor: wait;
+  background-color: #fafafa;
+}
+
+#load-elite-button.disabled {
+  cursor: not-allowed;
+  background-color: #fafafa;
 }

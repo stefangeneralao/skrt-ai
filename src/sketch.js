@@ -245,15 +245,33 @@ function showProgressBar() {
 }
 
 async function loadElite() {
-  const eliteModel = await tf.loadLayersModel('https://fjern-proxy.herokuapp.com/elite.json');
-  const elite = new Vehicle();
-  elite.decision();
-  elite.dispose();
-  elite.rayColor = color(0, 255, 0);
-  elite.neuralNetwork.model = eliteModel;
-  setNewGeneration();
-  vehicles[0].dispose();
-  vehicles[0] = elite;
+  const eliteButton = document.getElementById('load-elite-button');
+  try {
+    eliteButton.innerText = 'Loading...';
+    eliteButton.disabled = true;
+    eliteButton.className = 'loading';
+    
+    const eliteModelURL = `${ document.location.origin }/models/elite.json`;
+    const eliteModel = await tf.loadLayersModel(eliteModelURL);
+    const elite = new Vehicle();
+    elite.decision();
+    elite.dispose();
+    elite.rayColor = color(0, 255, 0);
+    elite.neuralNetwork.model = eliteModel;
+
+    setNewGeneration();
+    lifeTime = targetLifeTime;
+    vehicles[0].dispose();
+    vehicles[0] = elite;
+
+    eliteButton.innerText = 'Elite Loaded!';
+    eliteButton.disabled = true;
+    eliteButton.className = 'disabled';
+  } catch (e) {
+    eliteButton.innerText = 'Failed';
+    eliteButton.disabled = false;
+    eliteButton.removeAttribute('class');
+  }
 }
 
 function increaseLifeTime() {
