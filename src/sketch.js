@@ -245,6 +245,19 @@ function showProgressBar() {
   pop();
 }
 
+const getEliteModelURL = () => {
+  const { hostname, pathname, protocol, port } = document.location;
+  const hostnameCleaned = hostname.replace('/', '');
+  const pathnameCleaned = pathname.replace('/', '');
+  let result = '';
+  result += `${ protocol }//`;
+  result += `${ hostnameCleaned }`;
+  result += `${ port && (':' + port) }/`;
+  result += `${ pathnameCleaned && (pathnameCleaned + '/') }`;
+  result += 'models/elite.json';
+  return result;
+}
+
 async function loadElite() {
   const eliteButton = document.getElementById('load-elite-button');
   try {
@@ -252,7 +265,7 @@ async function loadElite() {
     eliteButton.disabled = true;
     eliteButton.className = 'loading';
     
-    const eliteModelURL = `${ document.location.origin }/models/elite.json`;
+    const eliteModelURL = getEliteModelURL();
     const eliteModel = await tf.loadLayersModel(eliteModelURL);
     const elite = new Vehicle();
     elite.decision();
